@@ -8,9 +8,15 @@
                  Order="Primary"
                  Priority="0"
                  Icon="fa-plus-circle"/>
+        <ToolbarItem
+            Order="Secondary"
+            Text="Locations"/>
+        <ToolbarItem
+            Order="Secondary"
+            Text="Settings"/>
     </ContentPage.ToolbarItems>
 
-    <StackLayout Margin="20,35,20,20">
+    <AbsoluteLayout Margin="20,35,20,20">
         <ListView x:Name="listView">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -19,5 +25,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+
+        
+        <ImageButton Source="icon_add.png" 
+            BackgroundColor="Transparent"
+            AbsoluteLayout.LayoutFlags="PositionProportional"  
+            AbsoluteLayout.LayoutBounds=".99,.99,80,80"
+            Clicked="AddButton_Click">
+        </ImageButton>
+    </AbsoluteLayout>
 </ContentPage>

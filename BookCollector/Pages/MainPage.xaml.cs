@@ -1,11 +1,14 @@
 ﻿using BookCollector.Models;
+using BookCollector.Pages;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace BookCollector
 {
@@ -25,6 +28,20 @@ namespace BookCollector
             listView.ItemsSource = await App.Database.GetBooksAsync();
         }
 
-        
+        async void AddButton_Click(object sender, EventArgs e)
+        {
+            string action = await DisplayActionSheet("Add Book", "Cancel", null, "Manually", "Scan ISBN");
+
+            switch (action)
+            {
+                case "Manually":
+                    await Navigation.PushAsync(new AddBookManuallyPage());
+                    break;
+
+                case "Scan ISBN":
+                    await Navigation.PushAsync(new AddBookIsbnPage());
+                    break;
+            }
+        }
     }
 }
