@@ -8,20 +8,22 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="20,35,20,20">
-                <Entry x:Name="titleEntry" Placeholder="Enter title" />
-                <Entry x:Name="authorEntry" Placeholder="Enter author" />
-                <Entry x:Name="isbnEntry" Placeholder="Enter ISBN" />
-                <Entry x:Name="publisherEntry" Placeholder="Enter publisher" />
-                <Entry x:Name="editionEntry" Placeholder="Enter edition" />
-                <Entry x:Name="publishDateEntry" Placeholder="Enter publishing date" />
-                <Entry x:Name="pageCountEntry" Placeholder="Enter page count" />
-                <Entry x:Name="locationEntry" Placeholder="Enter location" />
-                <Entry x:Name="signedEntry" Placeholder="Enter signed" />
-                <Entry x:Name="proofEntry" Placeholder="Enter proof" />
-                <Entry x:Name="purchasePriceEntry" Placeholder="Enter purchase price" />
-                <Entry x:Name="valuationEntry" Placeholder="Enter valuation" />
-                <Entry x:Name="ratingEntry" Placeholder="Enter rating" />
-                <Entry x:Name="conditionEntry" Placeholder="Enter condition" />
+                <Label>Title</Label>
+                <Entry x:Name="titleEntry" Text="{Binding NewBook.Title}" Placeholder="Enter title (required)" />
+                <Label>Author</Label>
+                <Entry x:Name="authorEntry" Text="{Binding NewBook.Author}" Placeholder="Enter author (required)" />
+                <!--<Entry x:Name="isbnEntry" Text="{Binding NewBook.Title}" Placeholder="Enter ISBN" />
+                <Entry x:Name="publisherEntry" Text="{Binding NewBook.Title}" Placeholder="Enter publisher" />
+                <Entry x:Name="editionEntry" Text="{Binding NewBook.Title}" Placeholder="Enter edition" />
+                <DatePicker x:Name="publishDateEntry" Text="{Binding NewBook.Title}" />
+                <Entry x:Name="pageCountEntry" Text="{Binding NewBook.Title}" Placeholder="Enter page count" />
+                <Entry x:Name="locationEntry" Text="{Binding NewBook.Title}" Placeholder="Enter location" />
+                <Entry x:Name="signedEntry" Text="{Binding NewBook.Title}" Placeholder="Enter signed" />
+                <Entry x:Name="proofEntry" Text="{Binding NewBook.Title}" Placeholder="Enter proof" />
+                <Entry x:Name="purchasePriceEntry" Text="{Binding NewBook.Title}" Placeholder="Enter purchase price" />
+                <Entry x:Name="valuationEntry" Text="{Binding NewBook.Title}" Placeholder="Enter valuation" />
+                <Entry x:Name="ratingEntry" Text="{Binding NewBook.Title}" Placeholder="Enter rating" />
+                <Entry x:Name="conditionEntry" Text="{Binding NewBook.Title}" Placeholder="Enter condition" />-->
 
                 <Button Text="Confirm"
                     Clicked="AddBookManually" />

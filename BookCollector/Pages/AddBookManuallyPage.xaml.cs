@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BookCollector.Helpers;
+using BookCollector.Models;
+using BookCollector.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,19 +15,24 @@ namespace BookCollector.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddBookManuallyPage : ContentPage
     {
+
+        private AddBookManuallyViewModel ViewModel;
+
         public AddBookManuallyPage()
         {
             InitializeComponent();
+            this.ViewModel = new AddBookManuallyViewModel(Navigation);
+            BindingContext = this.ViewModel;
         }
 
-        async void AddBookManually(object sender, EventArgs e)
+        public void AddBookManually(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage());
+            this.ViewModel.AddBookManually();
         }
 
-        async void CancelAddBookManually(object sender, EventArgs e)
+        public void CancelAddBookManually(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage());
+            this.ViewModel.CancelAddBookManually();
         }
     }
 }

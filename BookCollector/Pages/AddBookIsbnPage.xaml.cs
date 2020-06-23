@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookCollector.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,13 @@ namespace BookCollector.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddBookIsbnPage : ContentPage
     {
+        private AddBookIsbnViewModel ViewModel;
+
         public AddBookIsbnPage()
         {
             InitializeComponent();
+            this.ViewModel = new AddBookIsbnViewModel(Navigation);
+            BindingContext = this.ViewModel;
         }
     }
 }

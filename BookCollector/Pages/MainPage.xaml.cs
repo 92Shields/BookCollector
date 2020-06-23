@@ -1,5 +1,6 @@
 ﻿using BookCollector.Models;
 using BookCollector.Pages;
+using BookCollector.ViewModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,15 +18,18 @@ namespace BookCollector
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        private MainViewModel ViewModel;
+
         public MainPage()
         {
             InitializeComponent();
+            this.ViewModel = new MainViewModel(Navigation);
+            BindingContext = this.ViewModel;
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-            listView.ItemsSource = await App.Database.GetBooksAsync();
         }
 
         async void AddButton_Click(object sender, EventArgs e)
@@ -35,11 +39,11 @@ namespace BookCollector
             switch (action)
             {
                 case "Manually":
-                    await Navigation.PushAsync(new AddBookManuallyPage());
+                    this.ViewModel.AddBookManually();
                     break;
 
                 case "Scan ISBN":
-                    await Navigation.PushAsync(new AddBookIsbnPage());
+                    this.ViewModel.AddBookIsbn();
                     break;
             }
         }
