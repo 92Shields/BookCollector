@@ -3,6 +3,7 @@ using BookCollector.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
@@ -22,6 +23,28 @@ namespace BookCollector.ViewModels
             }
         }
 
+        private BookCondition _selectedCondition;
+        public BookCondition SelectedCondition
+        {
+            get
+            {
+                return _selectedCondition;
+            }
+            set
+            {
+                _selectedCondition = SelectedCondition;
+            }
+        }
+
+        public List<string> Conditions
+        {
+            get
+            {
+                return Enum.GetNames(typeof(BookCondition)).Select(b => b.SplitCamelCase()).ToList();
+            }
+        }
+
+
         public AddBookManuallyViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
@@ -30,10 +53,7 @@ namespace BookCollector.ViewModels
 
         public async void AddBookManually()
         {
-            Book book = new Book();
-            var test = NewBook.Title;
-
-            var errorMessage = BookHelper.ValidateBookEntry(book);
+            var errorMessage = BookHelper.ValidateBookEntry(NewBook);
 
             await this.Navigation.PushAsync(new MainPage());
         }

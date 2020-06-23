@@ -30,6 +30,6 @@ namespace BookCollector.Models
         public string Notes { get; set; }
         public DateTime DateAdded { get; set; }
         public int Rating { get; set; }
-        public Condition Condition { get; set; }
+        public BookCondition Condition { get; set; }
     }
 }

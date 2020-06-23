@@ -18,8 +18,9 @@ namespace BookCollector.Models
         Partial
     }
 
-    public enum Condition
+    public enum BookCondition
     {
+        New,
         LikeNew,
         Good,
         Fair,

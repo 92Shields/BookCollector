@@ -8,22 +8,57 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="20,35,20,20">
-                <Label>Title</Label>
-                <Entry x:Name="titleEntry" Text="{Binding NewBook.Title}" Placeholder="Enter title (required)" />
-                <Label>Author</Label>
-                <Entry x:Name="authorEntry" Text="{Binding NewBook.Author}" Placeholder="Enter author (required)" />
-                <!--<Entry x:Name="isbnEntry" Text="{Binding NewBook.Title}" Placeholder="Enter ISBN" />
-                <Entry x:Name="publisherEntry" Text="{Binding NewBook.Title}" Placeholder="Enter publisher" />
-                <Entry x:Name="editionEntry" Text="{Binding NewBook.Title}" Placeholder="Enter edition" />
-                <DatePicker x:Name="publishDateEntry" Text="{Binding NewBook.Title}" />
-                <Entry x:Name="pageCountEntry" Text="{Binding NewBook.Title}" Placeholder="Enter page count" />
-                <Entry x:Name="locationEntry" Text="{Binding NewBook.Title}" Placeholder="Enter location" />
-                <Entry x:Name="signedEntry" Text="{Binding NewBook.Title}" Placeholder="Enter signed" />
-                <Entry x:Name="proofEntry" Text="{Binding NewBook.Title}" Placeholder="Enter proof" />
-                <Entry x:Name="purchasePriceEntry" Text="{Binding NewBook.Title}" Placeholder="Enter purchase price" />
-                <Entry x:Name="valuationEntry" Text="{Binding NewBook.Title}" Placeholder="Enter valuation" />
-                <Entry x:Name="ratingEntry" Text="{Binding NewBook.Title}" Placeholder="Enter rating" />
-                <Entry x:Name="conditionEntry" Text="{Binding NewBook.Title}" Placeholder="Enter condition" />-->
+                <Label>Title *</Label>
+                <Entry x:Name="titleEntry" Text="{Binding NewBook.Title}" />
+                
+                <Label>Author *</Label>
+                <Entry x:Name="authorEntry" Text="{Binding NewBook.Author}" />
+
+                <Label>ISBN</Label>
+                <Entry x:Name="isbnEntry" Keyboard="Numeric"  Text="{Binding NewBook.Isbn}" />
+
+                <Label>Publisher</Label>
+                <Entry x:Name="publisherEntry" Text="{Binding NewBook.Publisher}" />
+
+                <Label>Edition</Label>
+                <Entry x:Name="editionEntry" Keyboard="Numeric" Text="{Binding NewBook.Edition}" />
+
+                <Label>Published Date</Label>
+                <DatePicker x:Name="publishDateEntry" Date="{Binding NewBook.PublishDate}" />
+
+                <Label>Page Count</Label>
+                <Entry x:Name="pageCountEntry" Keyboard="Numeric" Text="{Binding NewBook.PageCount}" />
+
+                <Label>Location</Label>
+                <Entry x:Name="locationEntry" Text="{Binding NewBook.LocationId}" />
+
+                <Label>Signed?</Label>
+                <CheckBox x:Name="signedEntry" IsChecked="{Binding NewBook.Signed}" />
+
+                <Label>Proof Copy?</Label>
+                <CheckBox x:Name="proofEntry" IsChecked="{Binding NewBook.Proof}" />
+
+                <Label>Purchase Price</Label>
+                <Entry x:Name="purchasePriceEntry" Keyboard="Numeric" Text="{Binding NewBook.PurchasePrice}" />
+
+                <Label>Valuation</Label>
+                <Entry x:Name="valuationEntry" Keyboard="Numeric" Text="{Binding NewBook.Valuation}" />
+
+                <Label>Rating</Label>
+                <Picker x:Name="ratingEntry" SelectedItem="{Binding NewBook.Rating}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>1</x:String>
+                            <x:String>2</x:String>
+                            <x:String>3</x:String>
+                            <x:String>4</x:String>
+                            <x:String>5</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker >
+
+                <Label>Condition</Label>
+                <Picker ItemsSource="{Binding Conditions}" SelectedIndex="{Binding NewBook.Condition, Converter={StaticResource IntEnum}}"/>
 
                 <Button Text="Confirm"
                     Clicked="AddBookManually" />
