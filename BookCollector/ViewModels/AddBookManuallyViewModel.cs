@@ -12,29 +12,9 @@ namespace BookCollector.ViewModels
     public class AddBookManuallyViewModel : BaseViewModel
     {
         public INavigation Navigation { get; set; }
-        private Book _newBook;
-        public Book NewBook
-        {
-            get { return _newBook; }
-            set
-            {
-                _newBook = value;
-                OnPropertyChanged();
-            }
-        }
+        public Book NewBook { get; set; }
 
-        private BookCondition _selectedCondition;
-        public BookCondition SelectedCondition
-        {
-            get
-            {
-                return _selectedCondition;
-            }
-            set
-            {
-                _selectedCondition = SelectedCondition;
-            }
-        }
+        public BookCondition SelectedCondition { get; set; }
 
         public List<string> Conditions
         {

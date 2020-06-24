@@ -12,6 +12,7 @@ namespace BookCollector.Models
 
     public enum ReadStatus
     {
+        Unlisted,
         Finished,
         InProgress,
         Unread,
@@ -20,6 +21,7 @@ namespace BookCollector.Models
 
     public enum BookCondition
     {
+        Unlisted,
         New,
         LikeNew,
         Good,
