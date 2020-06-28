@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace BookCollector.ViewModels
@@ -19,15 +20,19 @@ namespace BookCollector.ViewModels
             Books = new ObservableCollection<Book>(App.Database.GetBooksAsync().Result);
         }
 
-        public async void NavigateAddBookManually()
+        public async Task NavigateAddBookManually()
         {
             await Navigation.PushAsync(new AddBookManuallyPage());
         }
 
-        public async void NavigateAddBookIsbn()
+        public async Task NavigateAddBookIsbn()
         {
             await Navigation.PushAsync(new AddBookIsbnPage());
         }
 
+        public async Task NavigateBookDetail()
+        {
+            await Navigation.PushAsync(new BookDetailPage());
+        }
     }
 }

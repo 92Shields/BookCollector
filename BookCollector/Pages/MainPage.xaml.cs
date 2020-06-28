@@ -39,13 +39,18 @@ namespace BookCollector
             switch (action)
             {
                 case "Manually":
-                    this.ViewModel.NavigateAddBookManually();
+                    await this.ViewModel.NavigateAddBookManually();
                     break;
 
                 case "Scan ISBN":
-                    this.ViewModel.NavigateAddBookIsbn();
+                    await this.ViewModel.NavigateAddBookIsbn();
                     break;
             }
+        }
+
+        async void SelectBookDetail_Click(object sender, EventArgs e)
+        {
+            await this.ViewModel.NavigateBookDetail();
         }
     }
 }
