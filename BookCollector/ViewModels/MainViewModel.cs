@@ -11,29 +11,20 @@ namespace BookCollector.ViewModels
     public class MainViewModel : BaseViewModel
     {
         public INavigation Navigation { get; set; }
-        private ObservableCollection<Book> _books;
-        public ObservableCollection<Book> Books
-        {
-            get { return _books; }
-            set
-            {
-                _books = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<Book> Books { get; set; }
 
         public MainViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            _books = new ObservableCollection<Book>(App.Database.GetBooksAsync().Result);
+            Books = new ObservableCollection<Book>(App.Database.GetBooksAsync().Result);
         }
 
-        public async void AddBookManually()
+        public async void NavigateAddBookManually()
         {
             await Navigation.PushAsync(new AddBookManuallyPage());
         }
 
-        public async void AddBookIsbn()
+        public async void NavigateAddBookIsbn()
         {
             await Navigation.PushAsync(new AddBookIsbnPage());
         }

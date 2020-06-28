@@ -35,6 +35,16 @@ namespace BookCollector.ViewModels
         {
             var errorMessage = BookHelper.ValidateBookEntry(NewBook);
 
+            if (String.IsNullOrEmpty(errorMessage))
+            {
+                //add book
+            }
+            else
+            {
+                //display error
+                return;
+            }
+
             await this.Navigation.PushAsync(new MainPage());
         }
 

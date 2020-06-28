@@ -31,9 +31,14 @@ namespace BookCollector.Services
             return _database.Table<Book>().FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<int> SaveBookAsync(Book book)
+        public Task<int> AddBookAsync(Book book)
         {
             return _database.InsertAsync(book);
+        }
+
+        public Task<int> SaveBookAsync(Book book)
+        {
+            return _database.UpdateAsync(book);
         }
     }
 }

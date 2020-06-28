@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 using Xamarin.Forms;
 
-namespace BookCollector.Helpers
+namespace BookCollector.Converters
 {
     public class IntEnumConverter : IValueConverter
     {

@@ -2,12 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:converters="clr-namespace:BookCollector.Helpers"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:converters="clr-namespace:BookCollector.Converters"
              mc:Ignorable="d"
              x:Class="BookCollector.Pages.AddBookManuallyPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:IntEnumConverter x:Key="IntEnum"/>
+            <converters:StringDecimalConverter x:Key="StringDecimal" />
+            <converters:StringIntConverter x:Key="StringInt" />
+            <converters:StringLongConverter x:Key="StringLong" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -20,19 +23,19 @@
                 <Entry x:Name="authorEntry" Text="{Binding NewBook.Author}" />
 
                 <Label>ISBN</Label>
-                <Entry x:Name="isbnEntry" Keyboard="Numeric"  Text="{Binding NewBook.Isbn}" />
+                <Entry x:Name="isbnEntry" Keyboard="Numeric"  Text="{Binding NewBook.Isbn, Converter={StaticResource StringLong}}" />
 
                 <Label>Publisher</Label>
                 <Entry x:Name="publisherEntry" Text="{Binding NewBook.Publisher}" />
 
                 <Label>Edition</Label>
-                <Entry x:Name="editionEntry" Keyboard="Numeric" Text="{Binding NewBook.Edition}" />
+                <Entry x:Name="editionEntry" Keyboard="Numeric" Text="{Binding NewBook.Edition, Converter={StaticResource StringInt}}" />
 
                 <Label>Published Date</Label>
                 <DatePicker x:Name="publishDateEntry" Date="{Binding NewBook.PublishDate}" />
 
                 <Label>Page Count</Label>
-                <Entry x:Name="pageCountEntry" Keyboard="Numeric" Text="{Binding NewBook.PageCount}" />
+                <Entry x:Name="pageCountEntry" Keyboard="Numeric" Text="{Binding NewBook.PageCount, Converter={StaticResource StringInt}}" />
 
                 <Label>Location</Label>
                 <Entry x:Name="locationEntry" Text="{Binding NewBook.LocationId}" />
@@ -44,10 +47,10 @@
                 <CheckBox x:Name="proofEntry" IsChecked="{Binding NewBook.Proof}" />
 
                 <Label>Purchase Price</Label>
-                <Entry x:Name="purchasePriceEntry" Keyboard="Numeric" Text="{Binding NewBook.PurchasePrice}" />
+                <Entry x:Name="purchasePriceEntry" Keyboard="Numeric" Text="{Binding NewBook.PurchasePrice, Converter={StaticResource StringDecimal}}" />
 
                 <Label>Valuation</Label>
-                <Entry x:Name="valuationEntry" Keyboard="Numeric" Text="{Binding NewBook.Valuation}" />
+                <Entry x:Name="valuationEntry" Keyboard="Numeric" Text="{Binding NewBook.Valuation, Converter={StaticResource StringDecimal}}" />
 
                 <Label>Rating</Label>
                 <Picker x:Name="ratingEntry" SelectedItem="{Binding NewBook.Rating}">

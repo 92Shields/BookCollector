@@ -9,17 +9,26 @@ namespace BookCollector.Helpers
     {
         public static string ValidateBookEntry(Book book)
         {
-            string errorMessage = "";
-            
+            var errorMessage = new StringBuilder();
+
+            errorMessage.Append(ValidateBookRequiredFields(book));
+
+            return errorMessage.ToString();
+        }
+
+        public static string ValidateBookRequiredFields(Book book)
+        {
+            var errorMessage = new StringBuilder();
+
             if (String.IsNullOrEmpty(book.Title))
             {
-                errorMessage += "Please enter a title.&#x0a;";
+                errorMessage.Append("Please enter a title.&#x0a;");
             }
             if (String.IsNullOrEmpty(book.Author))
             {
-                errorMessage += "Please enter an author.&#x0a;";
+                errorMessage.Append("Please enter an author.&#x0a;");
             }
-            return errorMessage;
+            return errorMessage.ToString();
         }
     }
 }

@@ -39,11 +39,11 @@ namespace BookCollector
             switch (action)
             {
                 case "Manually":
-                    this.ViewModel.AddBookManually();
+                    this.ViewModel.NavigateAddBookManually();
                     break;
 
                 case "Scan ISBN":
-                    this.ViewModel.AddBookIsbn();
+                    this.ViewModel.NavigateAddBookIsbn();
                     break;
             }
         }
