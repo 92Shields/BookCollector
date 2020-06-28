@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace BookCollector.ViewModels
@@ -15,6 +16,12 @@ namespace BookCollector.ViewModels
         {
             this.Navigation = navigation;
             this.Book = App.Database.GetBookAsync(bookId).Result;
+        }
+
+        public async Task DeleteBook()
+        {
+            await App.Database.DeleteBookAsync(Book);
+            await Navigation.PushAsync(new MainPage());
         }
     }
 }

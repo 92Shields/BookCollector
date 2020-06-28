@@ -1,4 +1,5 @@
-﻿using BookCollector.ViewModels;
+﻿using BookCollector.Models;
+using BookCollector.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,19 @@ namespace BookCollector.Pages
             InitializeComponent();
             this.ViewModel = new BookDetailViewModel(Navigation, bookId);
             BindingContext = this.ViewModel;
+        }
+
+        public async void DeleteBook_Click(object sender, EventArgs e)
+        {
+            string action = await DisplayActionSheet("Are you sure?", "Cancel", null, "Confirm");
+
+            switch (action)
+            {
+                case "Confirm":
+                    
+                    await this.ViewModel.DeleteBook();
+                    break;
+            }
         }
     }
 }

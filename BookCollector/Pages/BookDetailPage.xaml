@@ -2,14 +2,72 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:converters="clr-namespace:BookCollector.Converters"
              mc:Ignorable="d"
              x:Class="BookCollector.Pages.BookDetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IntEnumConverter x:Key="IntEnum"/>
+            <converters:StringDecimalConverter x:Key="StringDecimal" />
+            <converters:StringIntConverter x:Key="StringInt" />
+            <converters:StringLongConverter x:Key="StringLong" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Order="Secondary"
+            Text="Edit"/>
+        <ToolbarItem
+                 Order="Secondary"
+                 Priority="0"
+                 Text="Delete"
+                 Clicked="DeleteBook_Click"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Margin="20,35,20,20">
+                <Label>Title</Label>
+                <Label x:Name="title" Text="{Binding Book.Title}" FontSize="18" />
+                <Label>Author</Label>
+                <Label x:Name="author" Text="{Binding Book.Author}" FontSize="18" />
+
+                <Label>ISBN</Label>
+                <Label x:Name="isbn" Text="{Binding Book.Isbn}" FontSize="18" />
+
+                <Label>Publisher</Label>
+                <Label x:Name="publisher" Text="{Binding Book.Publisher}" FontSize="18" />
+
+                <Label>Edition</Label>
+                <Label x:Name="edition" Text="{Binding Book.Edition}" FontSize="18" />
+
+                <Label>Published Date</Label>
+                <Label x:Name="publishDate" Text="{Binding Book.PublishDate}" FontSize="18" />
+
+                <Label>Page Count</Label>
+                <Label x:Name="pageCount" Text="{Binding Book.PageCount}" FontSize="18" />
+
+                <Label>Location</Label>
+                <Label x:Name="location" Text="{Binding Book.LocationId}" FontSize="18" />
+
+                <Label>Signed?</Label>
+                <CheckBox x:Name="signedEntry" IsChecked="{Binding Book.Signed}" IsEnabled="false" />
+
+                <Label>Proof Copy?</Label>
+                <CheckBox x:Name="proofEntry" IsChecked="{Binding Book.Proof}" IsEnabled="false" />
+
+                <Label>Purchase Price</Label>
+                <Label x:Name="purchasePrice" Text="{Binding Book.PurchasePrice}" FontSize="18" />
+
+                <Label>Valuation</Label>
+                <Label x:Name="valuation" Text="{Binding Book.Valuation}" FontSize="18" />
+
+                <Label>Rating</Label>
+                <Label x:Name="rating" Text="{Binding Book.Rating}" FontSize="18" />
+
+                <Label>Condition</Label>
+                <Label x:Name="condition" Text="{Binding Book.Condition}" FontSize="18"/>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
