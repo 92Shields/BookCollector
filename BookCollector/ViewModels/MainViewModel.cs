@@ -30,9 +30,9 @@ namespace BookCollector.ViewModels
             await Navigation.PushAsync(new AddBookIsbnPage());
         }
 
-        public async Task NavigateBookDetail()
+        public async Task NavigateBookDetail(Guid bookId)
         {
-            await Navigation.PushAsync(new BookDetailPage());
+            await Navigation.PushAsync(new BookDetailPage(bookId));
         }
     }
 }

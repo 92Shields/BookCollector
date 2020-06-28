@@ -50,7 +50,10 @@ namespace BookCollector
 
         async void SelectBookDetail_Click(object sender, EventArgs e)
         {
-            await this.ViewModel.NavigateBookDetail();
+            ListView list = (ListView)sender;
+            Book selectedBook = (Book)list.SelectedItem;
+
+            await this.ViewModel.NavigateBookDetail(selectedBook.Id);
         }
     }
 }

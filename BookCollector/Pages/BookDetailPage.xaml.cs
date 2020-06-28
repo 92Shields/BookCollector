@@ -15,10 +15,10 @@ namespace BookCollector.Pages
     {
         private BookDetailViewModel ViewModel;
 
-        public BookDetailPage()
+        public BookDetailPage(Guid bookId)
         {
             InitializeComponent();
-            this.ViewModel = new BookDetailViewModel(Navigation, Guid.Empty);
+            this.ViewModel = new BookDetailViewModel(Navigation, bookId);
             BindingContext = this.ViewModel;
         }
     }
