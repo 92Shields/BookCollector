@@ -40,5 +40,10 @@ namespace BookCollector.Services
         {
             return _database.UpdateAsync(book);
         }
+
+        public Task<int> DeleteBookAsync(Book book)
+        {
+            return _database.DeleteAsync(book);
+        }
     }
 }
