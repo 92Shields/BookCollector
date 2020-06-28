@@ -37,7 +37,7 @@ namespace BookCollector.ViewModels
 
             if (String.IsNullOrEmpty(errorMessage))
             {
-                //add book
+                await App.Database.AddBookAsync(NewBook);
             }
             else
             {

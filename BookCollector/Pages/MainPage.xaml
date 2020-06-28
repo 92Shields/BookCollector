@@ -17,11 +17,11 @@
     </ContentPage.ToolbarItems>
 
     <AbsoluteLayout Margin="20,35,20,20">
-        <ListView x:Name="listView" ItemsSource="{Binding Books}">>
+        <ListView x:Name="listView" ItemsSource="{Binding Books}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!--<TextCell Text="{Binding Name}"
-                              Detail="{Binding Age}" />-->
+                    <TextCell Text="{Binding Title}"
+                              Detail="{Binding Author}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
