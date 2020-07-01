@@ -36,7 +36,7 @@ namespace BookCollector.Services
             return _database.InsertAsync(book);
         }
 
-        public Task<int> SaveBookAsync(Book book)
+        public Task<int> UpdateBookAsync(Book book)
         {
             return _database.UpdateAsync(book);
         }

@@ -31,8 +31,12 @@ namespace BookCollector.Models
         public DateTime? DateAdded { get; set; }
         public int? Rating { get; set; }
         public BookCondition Condition { get; set; }
+        public bool IsLent
+        {
+            get { return this.LendingStatus == LendingStatus.Loaned; }
+        }
 
-        public Book()
+    public Book()
         {
             UserId = null;
             Isbn = null;

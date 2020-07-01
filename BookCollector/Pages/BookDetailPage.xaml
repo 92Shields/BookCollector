@@ -45,91 +45,105 @@
             <Label Grid.Row="2" Grid.Column="2" x:Name="author" Text="{Binding Book.Author}" FontSize="18" />
             <ImageButton Grid.Row="2" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditAuthor_Click">
             </ImageButton>
 
             <Label Grid.Row="3" Grid.Column="1">ISBN</Label>
             <Label Grid.Row="3" Grid.Column="2" x:Name="isbn" Text="{Binding Book.Isbn}" FontSize="18" />
             <ImageButton Grid.Row="3" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditIsbn_Click">
             </ImageButton>
 
             <Label Grid.Row="4" Grid.Column="1">Publisher</Label>
             <Label Grid.Row="4" Grid.Column="2" x:Name="publisher" Text="{Binding Book.Publisher}" FontSize="18" />
             <ImageButton Grid.Row="4" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditPublisher_Click">
             </ImageButton>
 
             <Label Grid.Row="5" Grid.Column="1">Edition</Label>
             <Label Grid.Row="5" Grid.Column="2" x:Name="edition" Text="{Binding Book.Edition}" FontSize="18" />
             <ImageButton Grid.Row="5" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditEdition_Click">
             </ImageButton>
 
             <Label Grid.Row="6" Grid.Column="1">Published Date</Label>
-            <Label Grid.Row="6" x:Name="publishDate" Text="{Binding Book.PublishDate}" FontSize="18" />
+            <DatePicker Grid.Row="6" Grid.Column="2" x:Name="publishDatePicker" IsEnabled="false" Date="{Binding Book.PublishDate}" />
             <ImageButton Grid.Row="6" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditPublishDate_Click">
             </ImageButton>
 
             <Label Grid.Row="7" Grid.Column="1">Page Count</Label>
             <Label Grid.Row="7" Grid.Column="2" x:Name="pageCount" Text="{Binding Book.PageCount}" FontSize="18" />
             <ImageButton Grid.Row="7" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditPageCount_Click">
             </ImageButton>
 
             <Label Grid.Row="8" Grid.Column="1">Location</Label>
             <Label Grid.Row="8" Grid.Column="2" x:Name="location" Text="{Binding Book.LocationId}" FontSize="18" />
             <ImageButton Grid.Row="8" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditLocation_Click">
             </ImageButton>
 
             <Label Grid.Row="9" Grid.Column="1">Signed?</Label>
             <CheckBox Grid.Row="9" Grid.Column="2" x:Name="signedEntry" IsChecked="{Binding Book.Signed}" IsEnabled="false" />
             <ImageButton Grid.Row="9" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditSigned_Click">
             </ImageButton>
 
             <Label Grid.Row="10" Grid.Column="1">Proof Copy?</Label>
             <CheckBox Grid.Row="10" Grid.Column="2" x:Name="proofEntry" IsChecked="{Binding Book.Proof}" IsEnabled="false" />
             <ImageButton Grid.Row="10" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditProof_Click">
             </ImageButton>
 
             <Label Grid.Row="11" Grid.Column="1">Purchase Price</Label>
             <Label Grid.Row="11" Grid.Column="2" x:Name="purchasePrice" Text="{Binding Book.PurchasePrice}" FontSize="18" />
             <ImageButton Grid.Row="11" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditPurchasePrice_Click">
             </ImageButton>
 
             <Label Grid.Row="12" Grid.Column="1">Valuation</Label>
             <Label Grid.Row="12" Grid.Column="2" x:Name="valuation" Text="{Binding Book.Valuation}" FontSize="18" />
             <ImageButton Grid.Row="12" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditValuation_Click">
             </ImageButton>
 
             <Label Grid.Row="13" Grid.Column="1">Rating</Label>
             <Label Grid.Row="13" Grid.Column="2" x:Name="rating" Text="{Binding Book.Rating}" FontSize="18" />
             <ImageButton Grid.Row="13" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditRating_Click">
             </ImageButton>
 
             <Label Grid.Row="14" Grid.Column="1">Condition</Label>
-            <Label Grid.Row="14" Grid.Column="2" x:Name="condition" Text="{Binding Book.Condition}" FontSize="18"/>
+            <Picker Grid.Row="14" Grid.Column="2" x:Name="conditionPicker" IsEnabled="false" ItemsSource="{Binding Conditions}" SelectedIndex="{Binding Book.Condition, Converter={StaticResource IntEnum}}"/>
             <ImageButton Grid.Row="14" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
-                    Clicked="EditTitle_Click">
+                    Clicked="EditCondition_Click">
+            </ImageButton>
+
+            <Label Grid.Row="15" Grid.Column="1">Lending Status</Label>
+            <Picker Grid.Row="15" Grid.Column="2" x:Name="lendingPicker" IsEnabled="false" ItemsSource="{Binding LendingStatus}" SelectedIndex="{Binding Book.LendingStatus, Converter={StaticResource IntEnum}}"/>
+            <ImageButton Grid.Row="15" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditLendingStatus_Click">
+            </ImageButton>
+
+            <Label Grid.Row="16" Grid.Column="1" IsVisible="{Binding IsLent}">Lent To</Label>
+            <Label Grid.Row="16" Grid.Column="2" IsVisible="{Binding IsLent}" x:Name="lentTo" Text="{Binding Book.LentTo}" FontSize="18" />
+            <ImageButton Grid.Row="16" Grid.Column="3" Source="edit.png" IsVisible="{Binding IsLent}" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditLentTo_Click">
             </ImageButton>
         </Grid>
     </ContentPage.Content>

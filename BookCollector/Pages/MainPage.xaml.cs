@@ -4,6 +4,7 @@ using BookCollector.ViewModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,8 @@ namespace BookCollector
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();
+            this.ViewModel = new MainViewModel(Navigation);
+            BindingContext = this.ViewModel;
         }
 
         async void AddButton_Click(object sender, EventArgs e)
