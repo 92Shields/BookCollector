@@ -24,50 +24,113 @@
                  Clicked="DeleteBook_Click"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Margin="20,35,20,20">
-                <Label>Title</Label>
-                <Label x:Name="title" Text="{Binding Book.Title}" FontSize="18" />
-                <Label>Author</Label>
-                <Label x:Name="author" Text="{Binding Book.Author}" FontSize="18" />
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                <Label>ISBN</Label>
-                <Label x:Name="isbn" Text="{Binding Book.Isbn}" FontSize="18" />
+            <Label Grid.Row="1" Grid.Column="1">Title</Label>
+            <Label Grid.Row="1" Grid.Column="2" x:Name="title" Text="{Binding Book.Title}" FontSize="18" />
+            <ImageButton Grid.Row="1" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Publisher</Label>
-                <Label x:Name="publisher" Text="{Binding Book.Publisher}" FontSize="18" />
+            <Label Grid.Row="2" Grid.Column="1">Author</Label>
+            <Label Grid.Row="2" Grid.Column="2" x:Name="author" Text="{Binding Book.Author}" FontSize="18" />
+            <ImageButton Grid.Row="2" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Edition</Label>
-                <Label x:Name="edition" Text="{Binding Book.Edition}" FontSize="18" />
+            <Label Grid.Row="3" Grid.Column="1">ISBN</Label>
+            <Label Grid.Row="3" Grid.Column="2" x:Name="isbn" Text="{Binding Book.Isbn}" FontSize="18" />
+            <ImageButton Grid.Row="3" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Published Date</Label>
-                <Label x:Name="publishDate" Text="{Binding Book.PublishDate}" FontSize="18" />
+            <Label Grid.Row="4" Grid.Column="1">Publisher</Label>
+            <Label Grid.Row="4" Grid.Column="2" x:Name="publisher" Text="{Binding Book.Publisher}" FontSize="18" />
+            <ImageButton Grid.Row="4" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Page Count</Label>
-                <Label x:Name="pageCount" Text="{Binding Book.PageCount}" FontSize="18" />
+            <Label Grid.Row="5" Grid.Column="1">Edition</Label>
+            <Label Grid.Row="5" Grid.Column="2" x:Name="edition" Text="{Binding Book.Edition}" FontSize="18" />
+            <ImageButton Grid.Row="5" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Location</Label>
-                <Label x:Name="location" Text="{Binding Book.LocationId}" FontSize="18" />
+            <Label Grid.Row="6" Grid.Column="1">Published Date</Label>
+            <Label Grid.Row="6" x:Name="publishDate" Text="{Binding Book.PublishDate}" FontSize="18" />
+            <ImageButton Grid.Row="6" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Signed?</Label>
-                <CheckBox x:Name="signedEntry" IsChecked="{Binding Book.Signed}" IsEnabled="false" />
+            <Label Grid.Row="7" Grid.Column="1">Page Count</Label>
+            <Label Grid.Row="7" Grid.Column="2" x:Name="pageCount" Text="{Binding Book.PageCount}" FontSize="18" />
+            <ImageButton Grid.Row="7" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Proof Copy?</Label>
-                <CheckBox x:Name="proofEntry" IsChecked="{Binding Book.Proof}" IsEnabled="false" />
+            <Label Grid.Row="8" Grid.Column="1">Location</Label>
+            <Label Grid.Row="8" Grid.Column="2" x:Name="location" Text="{Binding Book.LocationId}" FontSize="18" />
+            <ImageButton Grid.Row="8" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Purchase Price</Label>
-                <Label x:Name="purchasePrice" Text="{Binding Book.PurchasePrice}" FontSize="18" />
+            <Label Grid.Row="9" Grid.Column="1">Signed?</Label>
+            <CheckBox Grid.Row="9" Grid.Column="2" x:Name="signedEntry" IsChecked="{Binding Book.Signed}" IsEnabled="false" />
+            <ImageButton Grid.Row="9" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Valuation</Label>
-                <Label x:Name="valuation" Text="{Binding Book.Valuation}" FontSize="18" />
+            <Label Grid.Row="10" Grid.Column="1">Proof Copy?</Label>
+            <CheckBox Grid.Row="10" Grid.Column="2" x:Name="proofEntry" IsChecked="{Binding Book.Proof}" IsEnabled="false" />
+            <ImageButton Grid.Row="10" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Rating</Label>
-                <Label x:Name="rating" Text="{Binding Book.Rating}" FontSize="18" />
+            <Label Grid.Row="11" Grid.Column="1">Purchase Price</Label>
+            <Label Grid.Row="11" Grid.Column="2" x:Name="purchasePrice" Text="{Binding Book.PurchasePrice}" FontSize="18" />
+            <ImageButton Grid.Row="11" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-                <Label>Condition</Label>
-                <Label x:Name="condition" Text="{Binding Book.Condition}" FontSize="18"/>
+            <Label Grid.Row="12" Grid.Column="1">Valuation</Label>
+            <Label Grid.Row="12" Grid.Column="2" x:Name="valuation" Text="{Binding Book.Valuation}" FontSize="18" />
+            <ImageButton Grid.Row="12" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
 
-            </StackLayout>
-        </ScrollView>
+            <Label Grid.Row="13" Grid.Column="1">Rating</Label>
+            <Label Grid.Row="13" Grid.Column="2" x:Name="rating" Text="{Binding Book.Rating}" FontSize="18" />
+            <ImageButton Grid.Row="13" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
+
+            <Label Grid.Row="14" Grid.Column="1">Condition</Label>
+            <Label Grid.Row="14" Grid.Column="2" x:Name="condition" Text="{Binding Book.Condition}" FontSize="18"/>
+            <ImageButton Grid.Row="14" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditTitle_Click">
+            </ImageButton>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

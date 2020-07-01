@@ -35,5 +35,10 @@ namespace BookCollector.Pages
                     break;
             }
         }
+
+        public async void EditTitle_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
