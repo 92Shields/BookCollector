@@ -36,7 +36,7 @@ namespace BookCollector
 
         async void AddButton_Click(object sender, EventArgs e)
         {
-            string action = await DisplayActionSheet("Add Book", "Cancel", null, "Manually", "Scan ISBN");
+            string action = await DisplayActionSheet("Add Book", "Cancel", null, "Manually", "From ISBN");
 
             switch (action)
             {
@@ -44,7 +44,7 @@ namespace BookCollector
                     await this.ViewModel.NavigateAddBookManually();
                     break;
 
-                case "Scan ISBN":
+                case "From ISBN":
                     await this.ViewModel.NavigateAddBookIsbn();
                     break;
             }
