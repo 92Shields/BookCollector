@@ -1,4 +1,5 @@
 ﻿using BookCollector.ViewModels;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +70,36 @@ namespace BookCollector.Pages
 
         public async void Confirm_Click(object sender, EventArgs e)
         {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                await ViewModel.GetBookDetails(isbnEntry.Text);
 
+                var confirmationText = new StringBuilder();
+                confirmationText.Append($"Title: {ViewModel.NewBook.Title}\n");
+                confirmationText.Append($"Author: {ViewModel.NewBook.Author}\n");
+                confirmationText.Append($"ISBN: {ViewModel.NewBook.Isbn}\n");
+                confirmationText.Append($"Publisher: {ViewModel.NewBook.Publisher}\n");
+                confirmationText.Append($"Publish date: {ViewModel.NewBook.PublishDate}\n");
+                confirmationText.Append($"Page count: {ViewModel.NewBook.PageCount}");
+
+                bool answer = await DisplayAlert("Are the details correct?", confirmationText.ToString(), "Yes", "No");
+
+                if (answer)
+                {
+                    isbnEntry.Text = "";
+                    await ViewModel.AddNewBook();
+                    await ViewModel.NavigateBookDetails();
+                }
+                else
+                {
+                    await DisplayAlert("Alert", "Please check the ISBN code or add the book manually.", "OK");
+                }
+            }
+            else
+            {
+                // no internet so show warning
+                await DisplayAlert("Alert", "No internet connectivity, please resolve and try again.", "OK");
+            }
         }
     }
 }
