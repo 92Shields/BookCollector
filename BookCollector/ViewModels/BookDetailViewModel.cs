@@ -129,8 +129,7 @@ namespace BookCollector.ViewModels
 
         public async Task UpdateLendingStatus(string lendingStatus)
         {
-            Enum.TryParse(lendingStatus, out LendingStatus lendingStatusEnum);
-            Book.LendingStatus = lendingStatusEnum;
+            Book.LendingStatus = (Models.LendingStatus)Enum.Parse(typeof(Models.LendingStatus), lendingStatus.Replace(" ", ""));
             await UpdateBook();
         }
 
