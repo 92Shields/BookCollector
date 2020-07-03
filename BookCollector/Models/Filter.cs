@@ -15,7 +15,7 @@ namespace BookCollector.Models
         public string Publisher { get; set; }
         public int PageCount { get; set; }
         public LendingStatus LendingStatus { get; set; }
-        public string LentTo { get; set; }
+        public string LoanedTo { get; set; }
         public Guid LocationId { get; set; }
         public ReadStatus ReadStatus { get; set; }
         public bool Signed { get; set; }

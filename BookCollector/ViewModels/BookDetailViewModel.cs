@@ -3,6 +3,7 @@ using BookCollector.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,11 @@ namespace BookCollector.ViewModels
     {
         public INavigation Navigation { get; set; }
         public Book Book { get; set; }
+        public bool IsLoanedToVisible
+        {
+            get { return Book.LendingStatus == Models.LendingStatus.Loaned;
+    }
+        }
         public List<string> Conditions
         {
             get
@@ -129,12 +135,17 @@ namespace BookCollector.ViewModels
         public async Task UpdateLendingStatus(string lendingStatus)
         {
             Book.LendingStatus = (Models.LendingStatus)Enum.Parse(typeof(Models.LendingStatus), lendingStatus.Replace(" ", ""));
+            if (Book.LendingStatus == Models.LendingStatus.NotLoaned)
+            {
+                Book.LoanedTo = "";
+            }
             await UpdateBook();
+            OnPropertyChanged("IsLoanedToVisible");
         }
 
-        public async Task UpdateLentTo(string lentTo)
+        public async Task UpdateLoanedTo(string LoanedTo)
         {
-            Book.LentTo = lentTo;
+            Book.LoanedTo = LoanedTo;
             await UpdateBook();
         }
 

@@ -139,11 +139,11 @@
                     Clicked="EditLendingStatus_Click">
             </ImageButton>
 
-            <Label Grid.Row="16" Grid.Column="1" IsVisible="{Binding IsLent}">Lent To</Label>
-            <Label Grid.Row="16" Grid.Column="2" IsVisible="{Binding IsLent}" x:Name="lentTo" Text="{Binding Book.LentTo}" FontSize="18" />
-            <ImageButton Grid.Row="16" Grid.Column="3" Source="edit.png" IsVisible="{Binding IsLent}" 
+            <Label Grid.Row="16" Grid.Column="1" IsVisible="{Binding IsLoanedToVisible}">Lent To</Label>
+            <Label Grid.Row="16" Grid.Column="2" IsVisible="{Binding IsLoanedToVisible}" x:Name="LoanedTo" Text="{Binding Book.LoanedTo}" FontSize="18" />
+            <ImageButton Grid.Row="16" Grid.Column="3" Source="edit.png" IsVisible="{Binding IsLoanedToVisible}" 
                     BackgroundColor="Transparent"
-                    Clicked="EditLentTo_Click">
+                    Clicked="EditLoanedTo_Click">
             </ImageButton>
         </Grid>
     </ContentPage.Content>

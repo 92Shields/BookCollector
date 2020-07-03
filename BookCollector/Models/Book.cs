@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BookCollector.Models
@@ -20,7 +21,7 @@ namespace BookCollector.Models
         public string CoverUrl { get; set; }
         public string CoverSmallUrl { get; set; }
         public LendingStatus LendingStatus { get; set; }
-        public string LentTo { get; set; }
+        public string LoanedTo { get; set; }
         public Guid? LocationId { get; set; }
         public ReadStatus ReadStatus { get; set; }
         public bool Signed { get; set; }
@@ -31,12 +32,8 @@ namespace BookCollector.Models
         public DateTime? DateAdded { get; set; }
         public int? Rating { get; set; }
         public BookCondition Condition { get; set; }
-        public bool IsLent
-        {
-            get { return this.LendingStatus == LendingStatus.Loaned; }
-        }
 
-    public Book()
+        public Book()
         {
             UserId = null;
             Isbn = null;
@@ -49,7 +46,7 @@ namespace BookCollector.Models
             CoverUrl = "";
             CoverSmallUrl = "";
             LendingStatus = Models.LendingStatus.NotLoaned;
-            LentTo = "";
+            LoanedTo = "";
             LocationId = null;
             ReadStatus = Models.ReadStatus.Unlisted;
             Signed = false;

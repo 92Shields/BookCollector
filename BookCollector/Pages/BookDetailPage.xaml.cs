@@ -164,11 +164,11 @@ namespace BookCollector.Pages
             await ViewModel.UpdateLendingStatus(result);
         }
 
-        public async void EditLentTo_Click(object sender, EventArgs e)
+        public async void EditLoanedTo_Click(object sender, EventArgs e)
         {
-            string result = await DisplayPromptAsync(title: "Lent To", message: "", initialValue: lentTo.Text);
-            await ViewModel.UpdateLentTo(result);
-            lentTo.Text = result;
+            string result = await DisplayPromptAsync(title: "Lent To", message: "", initialValue: LoanedTo.Text);
+            await ViewModel.UpdateLoanedTo(result);
+            LoanedTo.Text = result;
         }
     }
 }
