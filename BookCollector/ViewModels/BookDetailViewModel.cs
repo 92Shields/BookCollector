@@ -122,8 +122,7 @@ namespace BookCollector.ViewModels
 
         public async Task UpdateCondition(string condition)
         {
-            Enum.TryParse(condition, out BookCondition conditionEnum);
-            Book.Condition = conditionEnum;
+            Book.Condition = (Models.BookCondition)Enum.Parse(typeof(Models.BookCondition), condition.Replace(" ", ""));
             await UpdateBook();
         }
 
