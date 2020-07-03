@@ -8,6 +8,7 @@ namespace BookCollector.ViewModels
     class AddBookIsbnViewModel
     {
         public INavigation Navigation { get; set; }
+        public long? IsbnEntry { get; set; }
 
         public AddBookIsbnViewModel(INavigation navigation)
         {
