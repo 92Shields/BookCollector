@@ -6,12 +6,9 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
-                 Order="Primary"
-                 Priority="0"
-                 Icon="fa-plus-circle"/>
-        <ToolbarItem
             Order="Secondary"
-            Text="Locations"/>
+            Text="Locations"
+            Clicked="LocationsButton_Click" />
         <ToolbarItem
             Order="Secondary"
             Text="Settings"/>

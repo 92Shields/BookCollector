@@ -45,5 +45,30 @@ namespace BookCollector.Services
         {
             return _database.DeleteAsync(book);
         }
+
+        public Task<List<Location>> GetLocationsAsync()
+        {
+            return _database.Table<Location>().ToListAsync();
+        }
+
+        public Task<Location> GetLocationAsync(Guid id)
+        {
+            return _database.Table<Location>().FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public Task<int> AddLocationAsync(Location location)
+        {
+            return _database.InsertAsync(location);
+        }
+
+        public Task<int> UpdateLocationAsync(Location location)
+        {
+            return _database.UpdateAsync(location);
+        }
+
+        public Task<int> DeleteLocationAsync(Location location)
+        {
+            return _database.DeleteAsync(location);
+        }
     }
 }

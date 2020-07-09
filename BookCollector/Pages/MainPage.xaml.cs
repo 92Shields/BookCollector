@@ -57,5 +57,10 @@ namespace BookCollector
 
             await this.ViewModel.NavigateBookDetail(selectedBook.Id);
         }
+
+        async void LocationsButton_Click(object sender, EventArgs e)
+        {
+            await this.ViewModel.NavigateLocations();
+        }
     }
 }

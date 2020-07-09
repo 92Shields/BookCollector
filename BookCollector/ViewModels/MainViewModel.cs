@@ -34,5 +34,10 @@ namespace BookCollector.ViewModels
         {
             await Navigation.PushAsync(new BookDetailPage(bookId));
         }
+
+        public async Task NavigateLocations()
+        {
+            await Navigation.PushAsync(new LocationsPage());
+        }
     }
 }
