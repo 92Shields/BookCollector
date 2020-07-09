@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:converters="clr-namespace:BookCollector.Converters"
              mc:Ignorable="d"
-             x:Class="BookCollector.Pages.AddBookIsbnPage">
+             x:Class="BookCollector.Pages.AddBookIsbnPage"
+             Title="Add Book">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:IntEnumConverter x:Key="IntEnum"/>
