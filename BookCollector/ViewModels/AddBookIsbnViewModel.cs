@@ -23,8 +23,9 @@ namespace BookCollector.ViewModels
             this.Navigation = navigation;
         }
 
-        public async Task GetBookDetails(string isbn)
+        public async Task<string> GetBookDetails(string isbn)
         {
+            var errorMessage = new StringBuilder();
             var url = $"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}";
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(url);
@@ -32,20 +33,29 @@ namespace BookCollector.ViewModels
             {
                 string content = await response.Content.ReadAsStringAsync();
                 var result = JObject.Parse(content);
-                var bookDetails = result["items"][0]["volumeInfo"];
-                NewBook = new Book
+                int test = (int)result["totalItems"];
+                if ((int)result["totalItems"] != 0)
                 {
-                    Isbn = long.Parse(isbn),
-                    Title = (string)bookDetails["title"],
-                    Author = (string)bookDetails["authors"][0],
-                    Publisher = (string)bookDetails["publisher"],
-                    PublishDate = DateTime.Parse((string)bookDetails["publishedDate"]),
-                    PageCount = (int)bookDetails["pageCount"],
-                    CoverUrl = (string)bookDetails["imageLinks"]["thumbnail"],
-                    CoverSmallUrl = (string)bookDetails["imageLinks"]["smallThumbnail"],
-                    LendingStatus = Models.LendingStatus.NotLoaned
-                };
+                    var bookDetails = result["items"][0]["volumeInfo"];
+                    NewBook = new Book
+                    {
+                        Isbn = long.Parse(isbn),
+                        Title = (string)bookDetails["title"],
+                        Author = (string)bookDetails["authors"][0],
+                        Publisher = (string)bookDetails["publisher"],
+                        PublishDate = (DateTime.TryParse((string)bookDetails["publishedDate"], out var dt) ? dt : (DateTime?)null),
+                        PageCount = (int)bookDetails["pageCount"],
+                        CoverUrl = (string)bookDetails["imageLinks"]["thumbnail"],
+                        CoverSmallUrl = (string)bookDetails["imageLinks"]["smallThumbnail"],
+                        LendingStatus = Models.LendingStatus.NotLoaned
+                    };
+                }
+                else
+                {
+                    errorMessage.Append("Book could not be found, please try again or enter the details manually.");
+                }
             }
+            return errorMessage.ToString();
         }
 
         public async Task AddNewBook()

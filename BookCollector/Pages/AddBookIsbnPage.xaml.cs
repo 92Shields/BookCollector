@@ -72,27 +72,34 @@ namespace BookCollector.Pages
         {
             if (CrossConnectivity.Current.IsConnected)
             {
-                await ViewModel.GetBookDetails(isbnEntry.Text);
+                var errorMessage = await ViewModel.GetBookDetails(isbnEntry.Text);
 
-                var confirmationText = new StringBuilder();
-                confirmationText.Append($"Title: {ViewModel.NewBook.Title}\n");
-                confirmationText.Append($"Author: {ViewModel.NewBook.Author}\n");
-                confirmationText.Append($"ISBN: {ViewModel.NewBook.Isbn}\n");
-                confirmationText.Append($"Publisher: {ViewModel.NewBook.Publisher}\n");
-                confirmationText.Append($"Publish date: {ViewModel.NewBook.PublishDate}\n");
-                confirmationText.Append($"Page count: {ViewModel.NewBook.PageCount}");
-
-                bool answer = await DisplayAlert("Are the details correct?", confirmationText.ToString(), "Yes", "No");
-
-                if (answer)
+                if (string.IsNullOrEmpty(errorMessage))
                 {
-                    isbnEntry.Text = "";
-                    await ViewModel.AddNewBook();
-                    await ViewModel.NavigateBookDetails();
+                    var confirmationText = new StringBuilder();
+                    confirmationText.Append($"Title: {ViewModel.NewBook.Title}\n");
+                    confirmationText.Append($"Author: {ViewModel.NewBook.Author}\n");
+                    confirmationText.Append($"ISBN: {ViewModel.NewBook.Isbn}\n");
+                    confirmationText.Append($"Publisher: {ViewModel.NewBook.Publisher}\n");
+                    confirmationText.Append($"Publish date: {ViewModel.NewBook.PublishDate}\n");
+                    confirmationText.Append($"Page count: {ViewModel.NewBook.PageCount}");
+
+                    bool answer = await DisplayAlert("Are the details correct?", confirmationText.ToString(), "Yes", "No");
+
+                    if (answer)
+                    {
+                        isbnEntry.Text = "";
+                        await ViewModel.AddNewBook();
+                        await ViewModel.NavigateBookDetails();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alert", "Please check the ISBN code or add the book manually.", "OK");
+                    }
                 }
                 else
                 {
-                    await DisplayAlert("Alert", "Please check the ISBN code or add the book manually.", "OK");
+                    await DisplayAlert("Alert", errorMessage, "OK");
                 }
             }
             else
