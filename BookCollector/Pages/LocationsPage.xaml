@@ -11,7 +11,8 @@
         <ToolbarItem
                  Order="Primary"
                  Priority="0"
-                 Icon="icon_plus"/>
+                 Icon="icon_plus"
+                 Clicked="AddLocation_Click"/>
     </ContentPage.ToolbarItems>
 
     <AbsoluteLayout Margin="20,35,20,20">

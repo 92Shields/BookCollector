@@ -1,8 +1,10 @@
 ﻿using BookCollector.Models;
+using BookCollector.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace BookCollector.ViewModels
@@ -16,6 +18,11 @@ namespace BookCollector.ViewModels
         {
             this.Navigation = navigation;
             Locations = new ObservableCollection<Location>(App.Database.GetLocationsAsync().Result);
+        }
+
+        public async Task NavigateAddLocation()
+        {
+            await Navigation.PushAsync(new AddLocationPage());
         }
     }
 }

@@ -26,5 +26,10 @@ namespace BookCollector.Pages
         {
 
         }
+
+        async void AddLocation_Click(object sender, EventArgs e)
+        {
+            await ViewModel.NavigateAddLocation();
+        }
     }
 }
