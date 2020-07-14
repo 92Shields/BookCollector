@@ -19,14 +19,18 @@ namespace BookCollector.Pages
             this.NewLocation = new Location();
         }
 
-        public async Task AddLocation()
+        public async Task<string> AddLocation()
         {
             string errorMessage = ValidateNewLocation();
 
             if (string.IsNullOrEmpty(errorMessage))
             {
                 await App.Database.AddLocationAsync(NewLocation);
-                await NavigateToLocations();
+                return "";
+            }
+            else
+            {
+                return errorMessage;
             }
         }
 

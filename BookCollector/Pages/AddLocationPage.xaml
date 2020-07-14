@@ -25,6 +25,8 @@
                 <Label>Details</Label>
                 <Editor x:Name="detailsEntry" Text="{Binding NewLocation.Details}" />
 
+                <Label x:Name="errorLabel" TextColor="Red" IsVisible="false"></Label>
+                
                 <Button Text="Confirm"
                     Clicked="AddLocation" />
                 <Button Text="Cancel"

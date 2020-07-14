@@ -23,7 +23,18 @@ namespace BookCollector.Pages
 
         async void AddLocation(object sender, EventArgs e)
         {
-            await ViewModel.AddLocation();
+            string errorMessage = await ViewModel.AddLocation();
+            if (string.IsNullOrEmpty(errorMessage))
+            {
+                errorLabel.Text = "";
+                errorLabel.IsVisible = false;
+                await ViewModel.NavigateToLocations();
+            }
+            else
+            {
+                errorLabel.Text = errorMessage;
+                errorLabel.IsVisible = true;
+            }
         }
 
         async void CancelAddLocation(object sender, EventArgs e)
