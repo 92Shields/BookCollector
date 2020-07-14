@@ -22,11 +22,11 @@ namespace BookCollector.Helpers
 
             if (String.IsNullOrEmpty(book.Title))
             {
-                errorMessage.Append("Please enter a title.&#x0a;");
+                errorMessage.Append("Please enter a title.\n");
             }
             if (String.IsNullOrEmpty(book.Author))
             {
-                errorMessage.Append("Please enter an author.&#x0a;");
+                errorMessage.Append("Please enter an author.\n");
             }
             return errorMessage.ToString();
         }

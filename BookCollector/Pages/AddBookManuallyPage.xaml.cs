@@ -25,9 +25,21 @@ namespace BookCollector.Pages
             BindingContext = this.ViewModel;
         }
 
-        public void AddBookManually(object sender, EventArgs e)
+        public async void AddBookManually(object sender, EventArgs e)
         {
-            this.ViewModel.AddBookManually();
+            string errorMessage = await this.ViewModel.AddBookManually();
+
+            if (string.IsNullOrEmpty(errorMessage))
+            {
+                errorLabel.Text = "";
+                errorLabel.IsVisible = false;
+                await ViewModel.NavigateMainPage();
+            }
+            else
+            {
+                errorLabel.Text = errorMessage;
+                errorLabel.IsVisible = true;
+            }
         }
 
         public void CancelAddBookManually(object sender, EventArgs e)

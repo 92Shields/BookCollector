@@ -69,6 +69,8 @@
                 <Label>Condition</Label>
                 <Picker ItemsSource="{Binding Conditions}" SelectedIndex="{Binding NewBook.Condition, Converter={StaticResource IntEnum}}"/>
 
+                <Label x:Name="errorLabel" TextColor="Red" IsVisible="false"></Label>
+                
                 <Button Text="Confirm"
                     Clicked="AddBookManually" />
                 <Button Text="Cancel"

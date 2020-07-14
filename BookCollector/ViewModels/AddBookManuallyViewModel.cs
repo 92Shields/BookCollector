@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace BookCollector.ViewModels
@@ -31,7 +32,7 @@ namespace BookCollector.ViewModels
             this.NewBook = new Book();
         }
 
-        public async void AddBookManually()
+        public async Task<string> AddBookManually()
         {
             var errorMessage = BookHelper.ValidateBookEntry(NewBook);
 
@@ -39,16 +40,16 @@ namespace BookCollector.ViewModels
             {
                 await App.Database.AddBookAsync(NewBook);
             }
-            else
-            {
-                //display error
-                return;
-            }
 
-            await this.Navigation.PushAsync(new MainPage());
+            return errorMessage;
         }
 
         public async void CancelAddBookManually()
+        {
+            await this.Navigation.PushAsync(new MainPage());
+        }
+
+        public async Task NavigateMainPage()
         {
             await this.Navigation.PushAsync(new MainPage());
         }
