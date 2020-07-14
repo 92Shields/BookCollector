@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BookCollector.Pages.LocationDetailPage"
+             Title="Location Details">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+                 Order="Secondary"
+                 Priority="0"
+                 Text="Delete"
+                 Clicked="DeleteLocation_Click"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="1" Grid.Column="1">Name</Label>
+                <Label Grid.Row="1" Grid.Column="2" x:Name="name" Text="{Binding Location.Name}" />
+                <ImageButton Grid.Row="1" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditName_Click">
+                </ImageButton>
+
+                <Label Grid.Row="2" Grid.Column="1">Address</Label>
+                <Label Grid.Row="2" Grid.Column="2" x:Name="address" Text="{Binding Location.Address}" />
+                <ImageButton Grid.Row="2" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditAddress_Click">
+                </ImageButton>
+
+                <Label Grid.Row="3" Grid.Column="1">Details</Label>
+                <Editor Grid.Row="3" Grid.Column="2" x:Name="details" Text="{Binding Location.Details}" IsEnabled="false" />
+                <ImageButton Grid.Row="3" Grid.Column="3" Source="edit.png" 
+                    BackgroundColor="Transparent"
+                    Clicked="EditDetails_Click">
+                </ImageButton>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

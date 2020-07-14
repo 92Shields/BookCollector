@@ -16,9 +16,6 @@
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Order="Secondary"
-            Text="Edit"/>
-        <ToolbarItem
                  Order="Secondary"
                  Priority="0"
                  Text="Delete"

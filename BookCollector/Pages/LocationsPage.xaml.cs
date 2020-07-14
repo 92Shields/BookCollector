@@ -1,4 +1,5 @@
-﻿using BookCollector.ViewModels;
+﻿using BookCollector.Models;
+using BookCollector.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,19 @@ namespace BookCollector.Pages
             this.ViewModel = new LocationsViewModel(Navigation);
             BindingContext = this.ViewModel;
         }
-        
+
+        protected override void OnAppearing()
+        {
+            this.ViewModel = new LocationsViewModel(Navigation);
+            BindingContext = this.ViewModel;
+        }
+
         async void SelectLocation_Click(object sender, EventArgs e)
         {
+            ListView list = (ListView)sender;
+            Location selectedLocation = (Location)list.SelectedItem;
 
+            await this.ViewModel.NavigateLocationDetails(selectedLocation.Id);
         }
 
         async void AddLocation_Click(object sender, EventArgs e)
