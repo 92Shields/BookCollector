@@ -12,5 +12,10 @@ namespace BookCollector.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public string Details { get; set; }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace BookCollector.Pages
 
         public async void AddBookManually(object sender, EventArgs e)
         {
+            ViewModel.SelectedLocation = LocationPicker.Items[LocationPicker.SelectedIndex];
             string errorMessage = await this.ViewModel.AddBookManually();
 
             if (string.IsNullOrEmpty(errorMessage))

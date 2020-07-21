@@ -1,5 +1,6 @@
 ﻿using BookCollector.Helpers;
 using BookCollector.Models;
+using BookCollector.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,8 +16,6 @@ namespace BookCollector.ViewModels
         public INavigation Navigation { get; set; }
         public Book NewBook { get; set; }
 
-        public BookCondition SelectedCondition { get; set; }
-
         public List<string> Conditions
         {
             get
@@ -24,6 +23,16 @@ namespace BookCollector.ViewModels
                 return Enum.GetNames(typeof(BookCondition)).Select(b => b.SplitCamelCase()).ToList();
             }
         }
+
+        public List<Location> Locations
+        {
+            get
+            {
+                return App.Database.GetLocationsAsync().Result.OrderBy(x => x.Name).ToList();
+            }
+        }
+
+        public string SelectedLocation { get; set; }
 
 
         public AddBookManuallyViewModel(INavigation navigation)
@@ -34,6 +43,7 @@ namespace BookCollector.ViewModels
 
         public async Task<string> AddBookManually()
         {
+            AddLocationToBook();
             var errorMessage = BookHelper.ValidateBookEntry(NewBook);
 
             if (String.IsNullOrEmpty(errorMessage))
@@ -52,6 +62,14 @@ namespace BookCollector.ViewModels
         public async Task NavigateMainPage()
         {
             await this.Navigation.PushAsync(new MainPage());
+        }
+
+        private void AddLocationToBook()
+        {
+
+            Guid selectedLocationId = App.Database.GetLocationsAsync().Result.FirstOrDefault(x => x.Name == SelectedLocation).Id;
+            NewBook.LocationId = selectedLocationId == Guid.Empty ? (Guid?)Guid.Empty : (Guid?)selectedLocationId;
+
         }
     }
 }
