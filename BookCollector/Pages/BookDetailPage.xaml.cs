@@ -68,12 +68,12 @@ namespace BookCollector.Pages
 
         public async void EditEdition_Click(object sender, EventArgs e)
         {
-            string result = await DisplayPromptAsync(title: "Title", message: "", initialValue: edition.Text, keyboard: Keyboard.Numeric);
+            string result = await DisplayPromptAsync(title: "Edition", message: "", initialValue: edition.Text, keyboard: Keyboard.Numeric);
             await ViewModel.UpdateEdition(result);
             edition.Text = result;
         }
 
-        public async void EditPublishDate_Click(object sender, EventArgs e)
+        public void EditPublishDate_Click(object sender, EventArgs e)
         {
             publishDatePicker.IsEnabled = true;
             publishDatePicker.Focus();
@@ -89,16 +89,23 @@ namespace BookCollector.Pages
 
         public async void EditPageCount_Click(object sender, EventArgs e)
         {
-            string result = await DisplayPromptAsync(title: "Title", message: "", initialValue: pageCount.Text, keyboard: Keyboard.Numeric);
+            string result = await DisplayPromptAsync(title: "Page Count", message: "", initialValue: pageCount.Text, keyboard: Keyboard.Numeric);
             await ViewModel.UpdatePageCount(result);
             pageCount.Text = result;
         }
 
-        public async void EditLocation_Click(object sender, EventArgs e)
+        public void EditLocation_Click(object sender, EventArgs e)
         {
-            string result = await DisplayPromptAsync(title: "Title", message: "", initialValue: "");
+            locationPicker.IsEnabled = true;
+            locationPicker.Focus();
+            locationPicker.SelectedIndexChanged += OnLocationSelected;
+            locationPicker.Unfocused += delegate { locationPicker.IsEnabled = false; };
+        }
+
+        private async void OnLocationSelected(object sender, EventArgs e)
+        {
+            var result = (string)locationPicker.SelectedItem;
             await ViewModel.UpdateLocation(result);
-            location.Text = result;
         }
 
         public async void EditSigned_Click(object sender, EventArgs e)
@@ -136,7 +143,7 @@ namespace BookCollector.Pages
             rating.Text = result;
         }
 
-        public async void EditCondition_Click(object sender, EventArgs e)
+        public void EditCondition_Click(object sender, EventArgs e)
         {
             conditionPicker.IsEnabled = true;
             conditionPicker.Focus();

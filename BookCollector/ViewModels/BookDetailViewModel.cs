@@ -36,6 +36,37 @@ namespace BookCollector.ViewModels
             }
         }
 
+        public List<string> Locations
+        {
+            get
+            {
+                return App.Database.GetLocationsAsync().Result.Select(x => x.Name).ToList();
+            }
+        }
+
+        public string SelectedLocation
+        {
+            get
+            {
+                return Book.LocationId != Guid.Empty ? App.Database.GetLocationAsync((Guid)Book.LocationId).Result.Name : "";
+
+            }
+        }
+
+        public int SelectedLocationIndex
+        {
+            get
+            {
+                int retVal = 0;
+                foreach (var location in Locations)
+                {
+                    if (location == SelectedLocation) return retVal;
+                    retVal++;
+                }
+                return -1;
+            }
+        }
+
         public BookDetailViewModel(INavigation navigation, Guid bookId)
         {
             this.Navigation = navigation;
@@ -90,9 +121,9 @@ namespace BookCollector.ViewModels
             await UpdateBook();
         }
 
-        public async Task UpdateLocation(string locationId)
+        public async Task UpdateLocation(string locationName)
         {
-            Book.LocationId = Guid.Parse(locationId);
+            Book.LocationId = App.Database.GetLocationsAsync().Result.FirstOrDefault(x => x.Name == locationName).Id;
             await UpdateBook();
         }
 
