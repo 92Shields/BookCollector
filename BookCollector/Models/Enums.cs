@@ -34,4 +34,12 @@ namespace BookCollector.Models
         GBP,
         USD
     }
+
+    public enum SortType
+    {
+        TitleAsc,
+        TitleDesc,
+        AuthorAsc,
+        AuthorDesc
+    }
 }

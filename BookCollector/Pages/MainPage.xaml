@@ -6,6 +6,10 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
+            Order="Primary"
+            Text="Sort"
+            Clicked="SortButton_Click" />
+        <ToolbarItem
             Order="Secondary"
             Text="Locations"
             Clicked="LocationsButton_Click" />

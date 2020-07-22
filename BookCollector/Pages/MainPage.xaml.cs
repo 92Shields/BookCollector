@@ -30,8 +30,8 @@ namespace BookCollector
 
         protected override void OnAppearing()
         {
-            this.ViewModel = new MainViewModel(Navigation);
-            BindingContext = this.ViewModel;
+            ViewModel.RefreshBookList();
+            
         }
 
         async void AddButton_Click(object sender, EventArgs e)
@@ -61,6 +61,32 @@ namespace BookCollector
         async void LocationsButton_Click(object sender, EventArgs e)
         {
             await this.ViewModel.NavigateLocations();
+        }
+
+        async void SortButton_Click(object sender, EventArgs e)
+        {
+            string action = await DisplayActionSheet("Sort", "Cancel", null, "Title Ascending", "Title Descending", "Author Ascending", "Author Descending");
+
+            switch (action)
+            {
+                case "Title Ascending":
+                    ViewModel.SortType = SortType.TitleAsc;
+                    break;
+
+                case "Title Descending":
+                    ViewModel.SortType = SortType.TitleDesc;
+                    break;
+
+                case "Author Ascending":
+                    ViewModel.SortType = SortType.AuthorAsc;
+                    break;
+
+                case "Author Descending":
+                    ViewModel.SortType = SortType.AuthorDesc;
+                    break;
+            }
+
+            ViewModel.RefreshBookList();
         }
     }
 }

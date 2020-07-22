@@ -40,7 +40,10 @@ namespace BookCollector.ViewModels
         {
             get
             {
-                return App.Database.GetLocationsAsync().Result.Select(x => x.Name).ToList();
+                var locations = new List<string>();
+                locations.Add("Unlisted");
+                locations.AddRange(App.Database.GetLocationsAsync().Result.Select(x => x.Name).ToList());
+                return locations;
             }
         }
 
@@ -48,7 +51,7 @@ namespace BookCollector.ViewModels
         {
             get
             {
-                return Book.LocationId != Guid.Empty ? App.Database.GetLocationAsync((Guid)Book.LocationId).Result.Name : "";
+                return Book.LocationId != Guid.Empty && Book.LocationId != null ? App.Database.GetLocationAsync((Guid)Book.LocationId).Result.Name : "Unlisted";
 
             }
         }
@@ -76,7 +79,7 @@ namespace BookCollector.ViewModels
         public async Task DeleteBook()
         {
             await App.Database.DeleteBookAsync(Book);
-            await Navigation.PushAsync(new MainPage());
+            await Navigation.PopAsync();
         }
 
         public async Task UpdateTitle(string title)
@@ -123,7 +126,13 @@ namespace BookCollector.ViewModels
 
         public async Task UpdateLocation(string locationName)
         {
-            Book.LocationId = App.Database.GetLocationsAsync().Result.FirstOrDefault(x => x.Name == locationName).Id;
+            if (locationName != "Unlisted")
+            {
+                Book.LocationId = App.Database.GetLocationsAsync().Result.FirstOrDefault(x => x.Name == locationName).Id;
+            } else
+            {
+                Book.LocationId = null;
+            }
             await UpdateBook();
         }
 
