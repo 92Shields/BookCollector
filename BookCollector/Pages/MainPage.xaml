@@ -16,6 +16,10 @@
         <ToolbarItem
             Order="Secondary"
             Text="Settings"/>
+        <ToolbarItem
+            Order="Secondary"
+            Text="Export To CSV"
+            Clicked="ExportToCsvButton_Click" />
     </ContentPage.ToolbarItems>
 
     <AbsoluteLayout Margin="20,35,20,20">

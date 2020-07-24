@@ -88,5 +88,10 @@ namespace BookCollector
 
             ViewModel.RefreshBookList();
         }
+
+        async void ExportToCsvButton_Click(object sender, EventArgs e)
+        {
+            ViewModel.ExportCsv();
+        }
     }
 }

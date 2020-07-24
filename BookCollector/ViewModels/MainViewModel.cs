@@ -3,8 +3,8 @@ using BookCollector.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -59,6 +59,24 @@ namespace BookCollector.ViewModels
             {
                 Books.Add(book);
             }
+        }
+
+        public async void ExportCsv()
+        {
+            var books = SortBooks(await App.Database.GetBooksAsync());
+
+            string path = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.Personal), "BooksExport.csv");
+
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine("Title, Author, Isbn, Publisher, Publis hDate");
+
+                foreach (var book in books)
+                {
+                    sw.WriteLine(book.Title + "," + book.Author + "," + book.Isbn + "," + book.Publisher + "," + book.PublishDate);
+                }
+            }
+
         }
 
         private List<Book> SortBooks(List<Book> books)
