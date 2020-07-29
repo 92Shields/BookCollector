@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:BookCollector.Converters" xmlns:helpers="clr-namespace:BookCollector.Helpers"
+             mc:Ignorable="d"
+             x:Class="BookCollector.Pages.FilterPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IntEnumConverter x:Key="IntEnum"/>
+            <converters:StringDecimalConverter x:Key="StringDecimal" />
+            <converters:StringIntConverter x:Key="StringInt" />
+            <converters:StringLongConverter x:Key="StringLong" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20,35,20,20">
+
+                <Label>Author</Label>
+                <Entry x:Name="authorEntry" Text="{Binding Filter.Author}" />
+
+                <Label>Publisher</Label>
+                <Entry x:Name="publisherEntry" Text="{Binding Filter.Publisher}" />
+
+                <Label>Edition</Label>
+                <Entry x:Name="editionEntry" Keyboard="Numeric" Text="{Binding Filter.Edition, Converter={StaticResource StringInt}}" />
+
+                <Label>Date Added From</Label>
+                <helpers:NullableDatePicker x:Name="dateAddedFromEntry" Date="{Binding Filter.DateAddedFrom}" />
+
+                <Label>Date Added To</Label>
+                <helpers:NullableDatePicker x:Name="dateAddedToEntry" Date="{Binding Filter.DateAddedTo}" />
+                
+                <Label>Published Date From</Label>
+                <helpers:NullableDatePicker x:Name="publishDateFromEntry" Date="{Binding Filter.PublishDateFrom}" />
+
+                <Label>Published Date To</Label>
+                <helpers:NullableDatePicker x:Name="publishDateToEntry" Date="{Binding Filter.PublishDateTo}" />
+
+                <Label>Page Count From</Label>
+                <Entry x:Name="pageCountFromEntry" Keyboard="Numeric" Text="{Binding Filter.PageCountFrom, Converter={StaticResource StringInt}}" />
+
+                <Label>Page Count To</Label>
+                <Entry x:Name="pageCountToEntry" Keyboard="Numeric" Text="{Binding Filter.PageCountTo, Converter={StaticResource StringInt}}" />
+                
+                <Label>Location</Label>
+                <Picker x:Name="LocationPicker"  ItemsSource="{Binding Filter.LocationId}" />
+
+                <Label>Signed?</Label>
+                <CheckBox x:Name="signedEntry" IsChecked="{Binding Filter.Signed}" />
+
+                <Label>Proof Copy?</Label>
+                <CheckBox x:Name="proofEntry" IsChecked="{Binding Filter.Proof}" />
+
+                <Label>Lending Status</Label>
+                <Picker x:Name="lendingPicker" IsEnabled="false" ItemsSource="{Binding Filter.LendingStatus}" SelectedIndex="{Binding Book.LendingStatus, Converter={StaticResource IntEnum}}"/>
+
+                <Label>Lent To</Label>
+                <Label x:Name="LoanedTo" Text="{Binding Filter.LoanedTo}" />
+
+                <Label>Rating</Label>
+                <Picker x:Name="ratingEntry" SelectedItem="{Binding Filter.Rating}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>1</x:String>
+                            <x:String>2</x:String>
+                            <x:String>3</x:String>
+                            <x:String>4</x:String>
+                            <x:String>5</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker >
+
+                <Button Text="Apply"
+                    Clicked="ApplyFilter_Click" />
+                <Button Text="Cancel"
+                    Clicked="CancelFilter_Click" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

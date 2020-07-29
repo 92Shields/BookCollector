@@ -56,18 +56,23 @@ namespace BookCollector.ViewModels
 
         public async void CancelAddBookManually()
         {
-            await this.Navigation.PushAsync(new MainPage());
+            await this.Navigation.PopModalAsync();
         }
 
         public async Task NavigateMainPage()
         {
-            await this.Navigation.PushAsync(new MainPage());
+            await Navigation.PopModalAsync();
         }
 
         private void AddLocationToBook()
         {
+            Guid? selectedLocationId = null;
 
-            Guid selectedLocationId = App.Database.GetLocationsAsync().Result.FirstOrDefault(x => x.Name == SelectedLocation).Id;
+            if (!string.IsNullOrEmpty(SelectedLocation))
+            {
+                selectedLocationId = App.Database.GetLocationsAsync().Result.FirstOrDefault(x => x.Name == SelectedLocation).Id;
+            }
+            
             NewBook.LocationId = selectedLocationId == Guid.Empty ? (Guid?)Guid.Empty : (Guid?)selectedLocationId;
 
         }

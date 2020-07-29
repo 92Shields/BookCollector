@@ -7,6 +7,10 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Order="Primary"
+            Text="Filter"
+            Clicked="FilterButton_Click" />
+        <ToolbarItem
+            Order="Primary"
             Text="Sort"
             Clicked="SortButton_Click" />
         <ToolbarItem

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:converters="clr-namespace:BookCollector.Converters"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:converters="clr-namespace:BookCollector.Converters" xmlns:helpers="clr-namespace:BookCollector.Helpers"
              mc:Ignorable="d"
              x:Class="BookCollector.Pages.BookDetailPage"
              Title="Details">
@@ -69,7 +69,7 @@
                 </ImageButton>
 
                 <Label Grid.Row="6" Grid.Column="1">Published Date</Label>
-                <DatePicker Grid.Row="6" Grid.Column="2" x:Name="publishDatePicker" IsEnabled="false" Date="{Binding Book.PublishDate}" />
+                <helpers:NullableDatePicker Grid.Row="6" Grid.Column="2" x:Name="publishDatePicker" IsEnabled="false" Date="{Binding Book.PublishDate}" />
                 <ImageButton Grid.Row="6" Grid.Column="3" Source="edit.png" 
                     BackgroundColor="Transparent"
                     Clicked="EditPublishDate_Click">

@@ -15,18 +15,20 @@ namespace BookCollector.ViewModels
         public INavigation Navigation { get; set; }
         public ObservableCollection<Book> Books { get; set; }
         public SortType SortType { get; set; }
+        public Filter Filter { get; set; }
 
         public MainViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
             SortType = SortType.TitleAsc;
             Books = new ObservableCollection<Book>();
+            Filter = new Filter();
             RefreshBookList();
         }
 
         public async Task NavigateAddBookManually()
         {
-            await Navigation.PushAsync(new AddBookManuallyPage());
+            await Navigation.PushModalAsync(new AddBookManuallyPage());
         }
 
         public async Task NavigateAddBookIsbn()
@@ -55,7 +57,9 @@ namespace BookCollector.ViewModels
         {
             List<Book> books = App.Database.GetBooksAsync().Result.ToList();
             Books.Clear();
-            foreach (var book in SortBooks(books))
+            books = FilterBooks(books);
+            books = SortBooks(books);
+            foreach (var book in books)
             {
                 Books.Add(book);
             }
@@ -63,7 +67,9 @@ namespace BookCollector.ViewModels
 
         public async void ExportCsv()
         {
-            var books = SortBooks(await App.Database.GetBooksAsync());
+            var books = await App.Database.GetBooksAsync();
+            books = FilterBooks(books);
+            books = SortBooks(books);
 
             string path = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.Personal), "BooksExport.csv");
 
@@ -78,6 +84,91 @@ namespace BookCollector.ViewModels
             }
 
         }
+
+        private List<Book> FilterBooks(List<Book> books)
+        {
+            if (Filter.DateAddedFrom != null)
+            {
+                books = books.Where(x => x.DateAdded >= Filter.DateAddedFrom).ToList();
+            }
+            
+            if (Filter.DateAddedTo != null)
+            {
+                books = books.Where(x => x.DateAdded <= Filter.DateAddedTo).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(Filter.Author))
+            {
+                books = books.Where(x => x.Author == Filter.Author).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(Filter.Publisher))
+            {
+                books = books.Where(x => x.Publisher == Filter.Publisher).ToList();
+            }
+
+            if (Filter.PageCountFrom != null)
+            {
+                books = books.Where(x => x.PageCount >= Filter.PageCountFrom).ToList();
+            }
+
+            if (Filter.PageCountTo != null)
+            {
+                books = books.Where(x => x.PageCount <= Filter.PageCountTo).ToList();
+            }
+
+            if (Filter.LendingStatus != null)
+            {
+                books = books.Where(x => x.LendingStatus == Filter.LendingStatus).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(Filter.LoanedTo))
+            {
+                books = books.Where(x => x.LoanedTo == Filter.LoanedTo).ToList();
+            }
+
+            if (Filter.LocationId != null && Filter.LocationId != Guid.Empty)
+            {
+                books = books.Where(x => x.LocationId == Filter.LocationId).ToList();
+            }
+
+            if (Filter.ReadStatus != null)
+            {
+                books = books.Where(x => x.ReadStatus == Filter.ReadStatus).ToList();
+            }
+
+            if (Filter.Signed != null)
+            {
+                books = books.Where(x => x.Signed == Filter.Signed).ToList();
+            }
+
+            if (Filter.Proof != null)
+            {
+                books = books.Where(x => x.Proof == Filter.Proof).ToList();
+            }
+
+            if (Filter.Edition != null)
+            {
+                books = books.Where(x => x.Edition == Filter.Edition).ToList();
+            }
+
+            if (Filter.PublishDateFrom != null)
+            {
+                books = books.Where(x => x.PublishDate >= Filter.PublishDateFrom).ToList();
+            }
+
+            if (Filter.PublishDateTo != null)
+            {
+                books = books.Where(x => x.PublishDate <= Filter.PublishDateTo).ToList();
+            }
+
+            if (Filter.Rating != null)
+            {
+                books = books.Where(x => x.Rating == Filter.Rating).ToList();
+            }
+
+            return books;
+    }
 
         private List<Book> SortBooks(List<Book> books)
         {

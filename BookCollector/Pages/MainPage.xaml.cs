@@ -31,7 +31,6 @@ namespace BookCollector
         protected override void OnAppearing()
         {
             ViewModel.RefreshBookList();
-            
         }
 
         async void AddButton_Click(object sender, EventArgs e)
@@ -61,6 +60,12 @@ namespace BookCollector
         async void LocationsButton_Click(object sender, EventArgs e)
         {
             await this.ViewModel.NavigateLocations();
+        }
+
+        async void FilterButton_Click(object sender, EventArgs e)
+        {
+            var filterPage = new FilterPage(ViewModel);
+            await Navigation.PushModalAsync(filterPage);
         }
 
         async void SortButton_Click(object sender, EventArgs e)
