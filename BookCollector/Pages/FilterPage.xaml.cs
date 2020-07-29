@@ -25,6 +25,15 @@ namespace BookCollector.Pages
 
         async void ApplyFilter_Click(object sender, EventArgs e)
         {
+            if (LocationPicker.SelectedIndex != -1)
+            {
+                ViewModel.SelectedLocation = LocationPicker.Items[LocationPicker.SelectedIndex];
+            }
+            else
+            {
+                ViewModel.SelectedLocation = "";
+            }
+            ViewModel.AddLocationToFilter();
             ViewModel.RefreshBookList();
             await Navigation.PopModalAsync();
         }

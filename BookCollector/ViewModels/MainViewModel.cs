@@ -16,6 +16,27 @@ namespace BookCollector.ViewModels
         public ObservableCollection<Book> Books { get; set; }
         public SortType SortType { get; set; }
         public Filter Filter { get; set; }
+        public List<Location> Locations
+        {
+            get
+            {
+                return App.Database.GetLocationsAsync().Result.OrderBy(x => x.Name).ToList();
+            }
+        }
+        public string SelectedLocation { get; set; }
+        public int SelectedLocationIndex
+        {
+            get
+            {
+                int retVal = 0;
+                foreach (var location in Locations)
+                {
+                    if (location.Name == SelectedLocation) return retVal;
+                    retVal++;
+                }
+                return -1;
+            }
+        }
 
         public MainViewModel(INavigation navigation)
         {
@@ -190,6 +211,19 @@ namespace BookCollector.ViewModels
                     return books.OrderBy(x => x.Title).ToList();
 
             }
+        }
+
+        public void AddLocationToFilter()
+        {
+            Guid? selectedLocationId = null;
+
+            if (!string.IsNullOrEmpty(SelectedLocation))
+            {
+                selectedLocationId = App.Database.GetLocationsAsync().Result.FirstOrDefault(x => x.Name == SelectedLocation).Id;
+            }
+
+            Filter.LocationId = selectedLocationId == Guid.Empty ? (Guid?)Guid.Empty : (Guid?)selectedLocationId;
+
         }
     }
 }

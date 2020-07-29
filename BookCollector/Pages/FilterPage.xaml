@@ -46,7 +46,7 @@
                 <Entry x:Name="pageCountToEntry" Keyboard="Numeric" Text="{Binding Filter.PageCountTo, Converter={StaticResource StringInt}}" />
                 
                 <Label>Location</Label>
-                <Picker x:Name="LocationPicker"  ItemsSource="{Binding Filter.LocationId}" />
+                <Picker x:Name="LocationPicker"  ItemsSource="{Binding Locations}"  SelectedIndex="{Binding SelectedLocationIndex}" />
 
                 <Label>Signed?</Label>
                 <CheckBox x:Name="signedEntry" IsChecked="{Binding Filter.Signed}" />
@@ -58,7 +58,7 @@
                 <Picker x:Name="lendingPicker" IsEnabled="false" ItemsSource="{Binding Filter.LendingStatus}" SelectedIndex="{Binding Book.LendingStatus, Converter={StaticResource IntEnum}}"/>
 
                 <Label>Lent To</Label>
-                <Label x:Name="LoanedTo" Text="{Binding Filter.LoanedTo}" />
+                <Entry x:Name="LoanedTo" Text="{Binding Filter.LoanedTo}" />
 
                 <Label>Rating</Label>
                 <Picker x:Name="ratingEntry" SelectedItem="{Binding Filter.Rating}">
