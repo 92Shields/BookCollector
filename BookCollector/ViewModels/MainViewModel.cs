@@ -37,6 +37,9 @@ namespace BookCollector.ViewModels
                 return -1;
             }
         }
+        public string LendingStatus { get; set; }
+
+        public int LendingStatusSelectedIndex { get; set; }
 
         public MainViewModel(INavigation navigation)
         {
@@ -223,7 +226,22 @@ namespace BookCollector.ViewModels
             }
 
             Filter.LocationId = selectedLocationId == Guid.Empty ? (Guid?)Guid.Empty : (Guid?)selectedLocationId;
+        }
 
+        public void AddLendingStatusToFilter()
+        {
+            switch (LendingStatus)
+            {
+                case "Loaned":
+                    Filter.LendingStatus = Models.LendingStatus.Loaned;
+                    break;
+                case "Not Loaned":
+                    Filter.LendingStatus = Models.LendingStatus.NotLoaned;
+                    break;
+                default:
+                    Filter.LendingStatus = null;
+                    break;
+            }
         }
     }
 }

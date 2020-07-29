@@ -55,7 +55,15 @@
                 <CheckBox x:Name="proofEntry" IsChecked="{Binding Filter.Proof}" />
 
                 <Label>Lending Status</Label>
-                <Picker x:Name="lendingPicker" IsEnabled="false" ItemsSource="{Binding Filter.LendingStatus}" SelectedIndex="{Binding Book.LendingStatus, Converter={StaticResource IntEnum}}"/>
+                <Picker x:Name="lendingPicker" SelectedIndex="{Binding LendingStatusSelectedIndex}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>All</x:String>
+                            <x:String>Loaned</x:String>
+                            <x:String>Not Loaned</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
 
                 <Label>Lent To</Label>
                 <Entry x:Name="LoanedTo" Text="{Binding Filter.LoanedTo}" />

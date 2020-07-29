@@ -33,7 +33,18 @@ namespace BookCollector.Pages
             {
                 ViewModel.SelectedLocation = "";
             }
+
+            if (ViewModel.LendingStatusSelectedIndex != -1)
+            {
+                ViewModel.LendingStatus = lendingPicker.Items[ViewModel.LendingStatusSelectedIndex];
+            }
+            else
+            {
+                ViewModel.LendingStatus = "";
+            }
+
             ViewModel.AddLocationToFilter();
+            ViewModel.AddLendingStatusToFilter();
             ViewModel.RefreshBookList();
             await Navigation.PopModalAsync();
         }
